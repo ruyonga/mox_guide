@@ -17,7 +17,6 @@ jobs:
           POSTGRES_DB: mox_guide_test
           POSTGRES_PASSWORD: postgres
  
-
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -27,8 +26,6 @@ jobs:
 
     steps:
       - checkout
-
-      # specify any bash command here prefixed with `run: `
       - run: mix local.hex --force
       - run: mix local.rebar --force
 
@@ -37,12 +34,10 @@ jobs:
             - v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock"}}
             - v1-mix-cache-{{ .Branch }}
             - v1-mix-cache
-      
       - restore_cache:
           keys:
             - v1-build-cache-{{ .Branch }}
             - v1-build-cache
-    
       - run: mix do deps.get, compile  # get updated dependencies & compile them
       
       - save_cache:  # generate and store mix cache
@@ -61,7 +56,7 @@ jobs:
           key: v1-build-cache
           paths: "_build"
      
-       - run:  # special utility that stalls main process until DB is ready
+      - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
