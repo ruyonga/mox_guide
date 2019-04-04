@@ -1,0 +1,8 @@
+version: 2
+jobs: 
+  build:
+    docker:
+      - image: circleci/elixir:1.6
+    steps:
+      - checkout
+      - run: IO.inspect "A first hello"
