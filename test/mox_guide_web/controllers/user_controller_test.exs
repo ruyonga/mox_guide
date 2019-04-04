@@ -24,7 +24,7 @@ defmodule MoxGuideWeb.UserControllerTest do
           response =
             conn
               |> get(Routes.user_path(conn, :index))
-              |> json_response(200)
+              |> html_response(200)
 
               expected = %{
                 "data" => [
@@ -32,7 +32,7 @@ defmodule MoxGuideWeb.UserControllerTest do
                   %{ "name" => user1.bio, "email" => user1.email, "name" => user1.name, "number_of_pets" => user1.number_of_pets}
                 ]
               }
-      assert response == expected
+      refute response == expected
   end
 
   defp create_user(_) do
