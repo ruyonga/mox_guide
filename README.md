@@ -1,4 +1,5 @@
 # MoxGuide
+[![CircleCI](https://circleci.com/gh/ruyonga/mox_guide.svg?style=svg)](https://circleci.com/gh/ruyonga/mox_guide)
 
 To start your Phoenix server:
 
